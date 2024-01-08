@@ -7,7 +7,7 @@ function increase_font()
     if current_size then
         local new_size = current_size + 1
         vim.o.guifont = string.gsub(vim.o.guifont, 'h%d+', 'h' .. new_size)
-    end
+        end
 end
 
 function decrease_font()
