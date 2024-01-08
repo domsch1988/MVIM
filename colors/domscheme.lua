@@ -20,7 +20,7 @@ if vim.o.background == 'dark' then
     base08 = '#ff3d3d',
     base09 = '#ffaa3d',
     base0A = '#ffff3d',
-    base0B = '#aaff3d',
+    base0B = '#aaff99',
     base0C = '#3daaff',
     base0D = '#3dddaa',
     base0E = '#d399ff',

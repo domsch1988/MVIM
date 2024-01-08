@@ -1,4 +1,4 @@
-local MvimFont = "JetBrainsMono Nerd Font"
+local MvimFont = "FiraCode Nerd Font"
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 local keymap = vim.api.nvim_set_keymap
 
@@ -7,7 +7,7 @@ function increase_font()
     if current_size then
         local new_size = current_size + 1
         vim.o.guifont = string.gsub(vim.o.guifont, 'h%d+', 'h' .. new_size)
-        end
+    end
 end
 
 function decrease_font()
@@ -42,6 +42,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.clipboard = "unnamed,unnamedplus"
+vim.opt.statuscolumn = "%s%C%=%{v:relnum?v:relnum:v:lnum} "
 -- vim.opt.statuscolumn = '%=%{v:lnum}│%{v:relnum}'
 
 -- General Vim Things
@@ -149,7 +150,27 @@ require("lazy").setup({
             -- require{'mini.ai'}.setup()
             -- require{'mini.align'}.setup()
             -- require{'mini.animate'}.setup()
-            -- require{'mini.base16'}.setup()
+            require('mini.base16').setup({
+                palette = {
+                    base00 = '#202428',
+                    base01 = '#303438',
+                    base02 = '#404448',
+                    base03 = '#606468',
+                    base04 = '#b0b4b8',
+                    base05 = '#d0d4d8',
+                    base06 = '#e0e4e8',
+                    base07 = '#ffffff',
+                    base08 = '#ff3d3d',
+                    base09 = '#ffaa3d',
+                    base0A = '#ffff3d',
+                    base0B = '#aaff99',
+                    base0C = '#3daaff',
+                    base0D = '#3dddaa',
+                    base0E = '#d399ff',
+                    base0F = '#ffaaaa'
+                }
+
+            })
             require('mini.basics').setup({
                 options = {
                     extra_ui = true,
@@ -231,7 +252,7 @@ require("lazy").setup({
             })
             require('mini.fuzzy').setup()
             require('mini.hipatterns').setup()
-            require('mini.hues').setup({ background = '#282828', foreground = '#EBDBB2' })
+            -- require('mini.hues').setup({ background = '#282828', foreground = '#EBDBB2' })
             require('mini.indentscope').setup({
                 draw = {
                     animation = function(s, n) return 5 end,
@@ -319,35 +340,6 @@ require("lazy").setup({
         lazy = false,
         config = true,
     },
-
-    -- Autocompletion
-    -- {
-    --   'hrsh7th/nvim-cmp',
-    --   event = 'InsertEnter',
-    --   dependencies = {
-    --     {'L3MON4D3/LuaSnip'},
-    --   },
-    --   config = function()
-    --     -- Here is where you configure the autocompletion settings.
-    --     local lsp_zero = require('lsp-zero')
-    --     lsp_zero.extend_cmp()
-    --
-    --     -- And you can configure cmp even more, if you want to.
-    --     local cmp = require('cmp')
-    --     local cmp_action = lsp_zero.cmp_action()
-    --
-    --     cmp.setup({
-    --       formatting = lsp_zero.cmp_format(),
-    --       mapping = cmp.mapping.preset.insert({
-    --         ['<C-Space>'] = cmp.mapping.complete(),
-    --         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    --         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    --         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    --         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-    --       })
-    --     })
-    --   end
-    -- },
 
     -- LSP
     {
