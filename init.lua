@@ -152,22 +152,22 @@ require("lazy").setup({
             -- require{'mini.animate'}.setup()
             require('mini.base16').setup({
                 palette = {
-                    base00 = '#202428',
-                    base01 = '#303438',
-                    base02 = '#404448',
-                    base03 = '#606468',
-                    base04 = '#b0b4b8',
-                    base05 = '#d0d4d8',
-                    base06 = '#e0e4e8',
+                    base00 = '#0d0e1c',
+                    base01 = '#20212f',
+                    base02 = '#343643',
+                    base03 = '#4a4c58',
+                    base04 = '#c6daff',
+                    base05 = '#acbdde',
+                    base06 = '#7a879e',
                     base07 = '#ffffff',
-                    base08 = '#ff3d3d',
-                    base09 = '#ffaa3d',
-                    base0A = '#ffff3d',
-                    base0B = '#aaff99',
-                    base0C = '#3daaff',
-                    base0D = '#3dddaa',
-                    base0E = '#d399ff',
-                    base0F = '#ffaaaa'
+                    base08 = '#ff5f59',
+                    base09 = '#d0bc00',
+                    base0A = '#44bc44',
+                    base0B = '#00d3d0',
+                    base0C = '#2fafff',
+                    base0D = '#feacd0',
+                    base0E = '#d09dc0',
+                    base0F = '#ff9f80'
                 }
 
             })
@@ -369,11 +369,11 @@ require("lazy").setup({
                         -- (Optional) Configure lua language server for neovim
                         -- local lua_opts = lsp_zero.nvim_lua_ls()
                         -- require('lspconfig').lua_ls.setup(lua_opts)
-                        require('lspconfig').ansiblels.setup({
-                            filetypes = {
-                                "yaml"
-                            }
-                        })
+                        -- require('lspconfig').ansiblels.setup({
+                        --     filetypes = {
+                        --         "yaml"
+                        --     }
+                        -- })
                         require('lspconfig').lua_ls.setup({
                             settings = {
                                 Lua = {
