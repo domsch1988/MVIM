@@ -46,11 +46,12 @@ vim.opt.statuscolumn = "%s%C%=%{v:relnum?v:relnum:v:lnum} "
 -- vim.opt.statuscolumn = '%=%{v:lnum}│%{v:relnum}'
 
 -- General Vim Things
-keymap("n", "<leader>qq", "<cmd>q<cr>", { noremap = true, silent = true, desc = 'Quit' })
+keymap("n", "<leader>q", "<cmd>q<cr>", { noremap = true, silent = true, desc = 'Quit' })
 keymap("n", "<leader>ul", "<cmd>Lazy<cr>", { noremap = true, silent = true, desc = 'Lazy' })
 
+
 -- Finding Stuff
-keymap("n", "<leader>ff", "<cmd>lua MiniPick.builtin.files()<cr>", { noremap = true, silent = true, desc = 'Find File' })
+keymap("n", "<leader>e", "<cmd>lua MiniPick.builtin.files()<cr>", { noremap = true, silent = true, desc = 'Find File' })
 keymap("n", "<leader>fm", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>",
     { noremap = true, silent = true, desc = 'Find Manualy' })
 keymap("n", "<leader>fb", "<cmd>lua MiniPick.builtin.buffers()<cr>",
@@ -60,7 +61,7 @@ keymap("n", "<leader>fg", "<cmd>lua MiniPick.builtin.grep_live()<cr>",
 keymap("n", "<leader>fh", "<cmd>lua MiniPick.builtin.help()<cr>", { noremap = true, silent = true, desc = 'Find Help' })
 
 -- Session Related Keymaps
-keymap("n", "<leader>ss", "<cmd>lua MiniSessions.select()<cr>",
+keymap("n", "<leader>sd", "<cmd>lua MiniSessions.select()<cr>",
     { noremap = true, silent = true, desc = 'Switch Session' })
 keymap("n", "<leader>sw", "<cmd>lua MiniSessions.write()<cr>", { noremap = true, silent = true, desc = 'Save Session' })
 
@@ -71,7 +72,7 @@ keymap("n", "<C-l>", "<cmd>bnext<cr>", { silent = true, desc = 'Next Buffer' })
 keymap("n", "<C-h>", "<cmd>bprevious<cr>", { silent = true, desc = 'Previous Buffer' })
 
 -- Git Related Keymaps
-keymap("n", "<leader>gg", "<cmd>terminal lazygit<cr>", { noremap = true, silent = true, desc = 'Lazygit' })
+keymap("n", "<leader>gl", "<cmd>terminal lazygit<cr>", { noremap = true, silent = true, desc = 'Lazygit' })
 keymap("n", "<leader>gp", "<cmd>terminal git pull<cr>", { noremap = true, silent = true, desc = 'Git Push' })
 keymap("n", "<leader>gs", "<cmd>terminal git push<cr>", { noremap = true, silent = true, desc = 'Git Pull' })
 keymap("n", "<leader>ga", "<cmd>terminal git add .<cr>", { noremap = true, silent = true, desc = 'Git Add All' })
@@ -112,12 +113,17 @@ keymap("n", "<leader>ufp", "<cmd>GuiFont! " .. MvimFont .. ":h20<cr>",
 keymap("n", "<leader>ufk", ":lua increase_font()<CR>", { noremap = true, silent = true, desc = 'Increase Font Size' })
 keymap("n", "<leader>ufj", ":lua decrease_font()<CR>", { noremap = true, silent = true, desc = 'Decrease Font Size' })
 
--- Completion Navigaiont
--- keymap('i', '<Down>', [[pumvisible() ? "<C-o>j" : "\<Down>"]], { expr = true, noremap = true })
--- keymap('i', '<Up>', [[pumvisible() ? "<C-o>k" : "\<Up>"]], { expr = true, noremap = true })
+-- Snippets (Scissors)
+vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
+-- When used in visual mode prefills the selection as body.
+vim.keymap.set({ "n", "x" }, "<leader>sa", function() require("scissors").addNewSnippet() end)
+
 
 -- This should probably not go into the repo, as it's not universally usefull
 vim.filetype.add({
+    extension = {
+        ael = 'ael'
+    },
     filename = {
         ['inventory'] = 'dosini',
     }
@@ -143,6 +149,7 @@ vim.api.nvim_create_autocmd('User', {
 
 require("lazy").setup({
     { 'equalsraf/neovim-gui-shim' },
+    { 'rebelot/kanagawa.nvim' },
     {
         "echasnovski/mini.nvim",
         version = false,
@@ -236,12 +243,12 @@ require("lazy").setup({
             })
             require('mini.colors').setup()
             require('mini.comment').setup()
-            require('mini.completion').setup({
-                window = {
-                    info = { border = 'rounded' },
-                    signature = { border = 'rounded' },
-                }
-            })
+            -- require('mini.completion').setup({
+            --     window = {
+            --         info = { border = 'rounded' },
+            --         signature = { border = 'rounded' },
+            --     }
+            -- })
             require('mini.cursorword').setup()
             -- require('mini.doc').setup()
             require('mini.extra').setup()
@@ -396,5 +403,5 @@ require("lazy").setup({
                 }
             })
         end
-    }
+    },
 })
